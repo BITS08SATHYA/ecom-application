@@ -1,7 +1,6 @@
 package com.app.ecom;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,5 +19,12 @@ public class UserService {
         user.setId(nextId++);
         usersList.add(user);
         return usersList;
+    }
+
+    public User fetchAUsers(Long id) {
+       return usersList.stream()
+               .filter(user -> user.getId().equals(id))
+               .findFirst()
+               .orElse(null);
     }
 }
