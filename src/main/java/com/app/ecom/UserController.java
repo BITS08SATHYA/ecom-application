@@ -1,7 +1,10 @@
 package com.app.ecom;
 
+import jakarta.servlet.ServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,19 +18,27 @@ public class UserController {
     private Object user;
 
     @GetMapping("/api/users")
-    public List<User> getAllUsers() {
-        return userService.fetchAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+//        return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
+        return ResponseEntity.ok(userService.fetchAllUsers());
     }
 
     @GetMapping("/api/users/{id}")
-    public User getAUser(@PathVariable Long id) {
-        return userService.fetchAUsers(id);
+    public ResponseEntity<User> getAUser(@PathVariable Long id) {
+
+        User user = userService.fetchAUsers(id);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/api/users")
-    public String createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.addUser(user);
-        return "User Added Successfully!";
+        return ResponseEntity.ok("User added successfully");
     }
 
 
