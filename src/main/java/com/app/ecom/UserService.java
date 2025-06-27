@@ -10,12 +10,14 @@ import java.util.List;
 public class UserService {
 
     private List<User> usersList = new ArrayList<>();
+    private Long nextId = 1L;
 
     public List<User> fetchAllUsers() {
         return usersList;
     }
 
     public List<User> addUser(User user) {
+        user.setId(nextId++);
         usersList.add(user);
         return usersList;
     }
