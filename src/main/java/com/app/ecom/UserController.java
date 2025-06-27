@@ -11,19 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class UserController {
 
     private final UserService userService;
     private Object user;
 
-    @GetMapping("/api/users")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
 //        return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
         return ResponseEntity.ok(userService.fetchAllUsers());
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<User> getAUser(@PathVariable Long id) {
 
         return userService.fetchAUsers(id)
@@ -31,13 +32,13 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/api/users")
+    @PostMapping("/users")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity.ok("User added successfully");
     }
 
-    @PutMapping("/api/users/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Long id,@RequestBody User user) {
         boolean updated = userService.updateUser(id,user);
         if (updated) return ResponseEntity.ok("User updated successfully");
