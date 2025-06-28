@@ -1,5 +1,7 @@
 package com.app.ecom;
 
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Modifying
+    @Transactional
     public void addUser(User user) {
 //        user.setId(nextId++);
 //        usersList.add(user);
@@ -37,6 +41,8 @@ public class UserService {
        return userRepository.findById(id);
     }
 
+    @Modifying
+    @Transactional
     public boolean updateUser(Long id, User UpdatedUser){
 //        return usersList.stream()
 //                .filter(user -> user.getId().equals(id))
