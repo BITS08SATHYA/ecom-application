@@ -1,5 +1,7 @@
-package com.app.ecom;
+package com.app.ecom.service;
 
+import com.app.ecom.model.User;
+import com.app.ecom.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
