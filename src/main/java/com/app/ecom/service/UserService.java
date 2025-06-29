@@ -16,13 +16,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-
 public class UserService {
 
     private final UserRepository userRepository;
-
-    private List<User> usersList = new ArrayList<>();
-    private Long nextId = 1L;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
