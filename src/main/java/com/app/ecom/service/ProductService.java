@@ -3,9 +3,7 @@ package com.app.ecom.service;
 import com.app.ecom.dto.ProductRequest;
 import com.app.ecom.dto.ProductResponse;
 import com.app.ecom.model.Product;
-import com.app.ecom.model.ProductRepository;
-import com.app.ecom.repository.ProductRespository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.app.ecom.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
