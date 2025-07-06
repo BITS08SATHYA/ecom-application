@@ -5,6 +5,7 @@ services:
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: postgres
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
